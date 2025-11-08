@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Ti, Mi Amor 💖 | Carta Interactiva con Música y Corazón</title>
+  
+  <!-- Descripción SEO -->
+  <meta name="description" content="Una carta romántica interactiva personalizada con tu nombre, imagen y música. Expresa tu amor de una forma única y especial. 💌">
+  
+  <!-- Palabras clave -->
+  <meta name="keywords" content="amor, carta romántica, regalo digital, música romántica, dedicatoria personalizada, corazón animado, sorpresa para pareja, amor interactivo">
+  
+  <!-- Autor -->
+  <meta name="author" content="Tu Nombre o Marca">
+  
+  <!-- Open Graph (para redes sociales) -->
+  <meta property="og:title" content="Para Ti, Mi Amor 💖">
+  <meta property="og:description" content="Crea una experiencia romántica personalizada con música, imágenes y animaciones.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="image.png">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Para Ti, Mi Amor 💖">
+  <meta name="twitter:description" content="Un detalle romántico interactivo para la persona que amas.">
+  <meta name="twitter:image" content="image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="image.png" type="image/png">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+  
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div id="fog" aria-hidden="true"></div>
+  <canvas id="recordingCanvas" aria-hidden="true"></canvas>
+
+  <nav aria-label="Opciones de personalización">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+      <input type="text" id="nameInput" placeholder="Escribe su nombre aquí..." aria-label="Nombre para mostrar">
+      <button id="btnWrite">Mostrar</button>
+      <select id="fontSelect" aria-label="Seleccionar tipo de letra">
+        <option value="'Great Vibes', cursive">Great Vibes</option>
+        <option value="'Dancing Script', cursive">Dancing Script</option>
+        <option value="'Pacifico', cursive">Pacifico</option>
+        <option value="'Satisfy', cursive">Satisfy</option>
+      </select>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <div class="file-input-wrapper">
+        <label for="imageUpload" class="file-input-label">
+          <i class="fas fa-image" aria-hidden="true"></i> Imagen
+        </label>
+        <input type="file" id="imageUpload" accept="image/*" aria-label="Subir imagen">
+      </div>
+      <div class="file-input-wrapper">
+        <label for="musicUpload" class="file-input-label">
+          <i class="fas fa-music" aria-hidden="true"></i> Música
+        </label>
+        <input type="file" id="musicUpload" accept="audio/*" aria-label="Subir música">
+      </div>
+      <input type="color" id="colorPicker" value="#ff1493" aria-label="Selector de color">
+      <button id="toggleSound" aria-label="Activar o desactivar sonido">Sonido</button>
+    </div>
+  </nav>
+
+  <main>
+    <h1 id="nameDisplay">Para Ti, Mi Amor</h1>
+
+    <section id="heartContainer" aria-label="Corazón animado">
+      <img id="heartImage" src="image.png" alt="Corazón con imagen personalizada">
+      <div class="love-wave"></div>
+      <div class="love-wave" style="animation-delay: 0.8s;"></div>
+      <div class="love-wave" style="animation-delay: 1.6s;"></div>
+    </section>
+
+    <div class="controls" aria-label="Controles de sonido">
+      <button id="playMusic" title="Reproducir música romántica">Música</button>
+      <button id="playWhisper" title="Reproducir susurro romántico">Susurro</button>
+    </div>
+  </main>
+
+  <!-- Audio -->
+  <audio id="heartbeat" loop>
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-heart-beat-romantic-578.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="music">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-cinema-106.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="whisper">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-female-voice-whisper-hello-1081.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Modal -->
+  <div id="progressModal" class="modal" role="dialog" aria-labelledby="progressText" aria-modal="true">
+    <div class="modal-content">
+      <span class="close" aria-label="Cerrar ventana">&times;</span>
+      <h2 style="color: var(--neon); margin-bottom: 20px;">Grabando Video...</h2>
+      <p>Por favor, espera mientras se procesa tu video</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p id="progressText" style="margin-top: 10px; font-size: 14px;">0%</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
